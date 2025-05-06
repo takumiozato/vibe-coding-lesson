@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer components {
+  .prose {
+    @apply text-gray-800 leading-relaxed;
+  }
+  
+  .prose h1 {
+    @apply text-3xl font-bold mb-6 mt-8;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold mb-4 mt-6;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-bold mb-3 mt-5;
+  }
+  
+  .prose p {
+    @apply mb-4;
+  }
+  
+  .prose ul {
+    @apply list-disc pl-6 mb-4;
+  }
+  
+  .prose ol {
+    @apply list-decimal pl-6 mb-4;
+  }
+  
+  .prose li {
+    @apply mb-1;
+  }
+  
+  .prose a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic my-4;
+  }
+}

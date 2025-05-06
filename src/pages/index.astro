@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+// 記事を取得して日付順にソート
+const articles = await getCollection('articles');
+const sortedArticles = articles.sort((a, b) => 
+  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+---
+
+<Layout title="IRメディアサイト | 企業のIR情報をお届け">
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <header class="mb-10 text-center">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">IR情報メディア</h1>
+      <p class="text-xl text-gray-600">企業のIR情報をわかりやすくお届けします</p>
+    </header>
+    
+    <section>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedArticles.map(article => (
+          <ArticleCard
+            title={article.data.title}
+            publishDate={article.data.publishDate}
+            summary={article.data.summary}
+            tags={article.data.tags}
+            slug={article.slug}
+          />
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

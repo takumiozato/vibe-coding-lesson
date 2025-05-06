@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  publishDate: string;
+  summary: string;
+  tags: string[];
+  slug: string;
+}
+
+const { title, publishDate, summary, tags, slug } = Astro.props;
+
+// 日付をフォーマット
+const formattedDate = new Date(publishDate).toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+  <a href={`/articles/${slug}`} class="block">
+    <div class="p-6">
+      <div class="flex flex-wrap gap-2 mb-3">
+        {tags.map(tag => (
+          <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">{tag}</span>
+        ))}
+      </div>
+      <h2 class="text-xl font-bold text-gray-800 mb-2">{title}</h2>
+      <p class="text-gray-600 text-sm mb-4">{formattedDate}</p>
+      <p class="text-gray-700">{summary}</p>
+    </div>
+  </a>
+</div>
